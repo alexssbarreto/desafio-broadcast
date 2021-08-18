@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ChatMessageController;
 use App\Http\Controllers\TestController;
+use App\Models\User;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
 
@@ -28,5 +29,10 @@ Route::get('/test/notification', [TestController::class, 'notification']);
 Route::get('/test/channel', [TestController::class, 'channel']);
 
 Route::get('/chat', [ChatMessageController::class, 'index']);
+
+Route::get('/users', function () {
+    return response(User::get(), 200);
+});
+
 Route::get('/messages', [ChatMessageController::class, 'list']);
 Route::post('/messages', [ChatMessageController::class, 'register']);

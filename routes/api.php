@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ChatMessageController;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('/users', function () {
+    return response(User::get(), 200);
+});
+
+Route::get('/messages', [ChatMessageController::class, 'list']);
+Route::post('/messages', [ChatMessageController::class, 'register']);

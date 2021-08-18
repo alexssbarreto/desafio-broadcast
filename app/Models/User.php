@@ -31,6 +31,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'created_at',
+        'updated_at',
+        'email_verified_at'
     ];
 
     /**
@@ -41,32 +44,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    // protected $dispatchesEvents = [
-    //     'retrieved' => TestEventModel::class,
-    //     'creating' => TestEventModel::class,
-    //     'created' => TestEventModel::class,
-    //     'updating' => TestEventModel::class,
-    //     'updated' => TestEventModel::class,
-    //     'saving' => TestEventModel::class,
-    //     'saved' => TestEventModel::class,
-    //     'deleting' => TestEventModel::class,
-    //     'deleted' => TestEventModel::class,
-    //     'restoring' => TestEventModel::class,
-    //     'restored' => TestEventModel::class,
-    //     'replicating' => TestEventModel::class,
-
-    // ];
-
-    // protected static function booted()
-    // {
-    //     static::creating(function ($user) {
-    //         die('creating');
-    //         var_dump($user);
-
-    //     });
-    //     // static::retrieved(function ($user) {
-    //     //     var_dump($user);
-    //     // });
-    // }
 }

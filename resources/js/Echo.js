@@ -6,6 +6,6 @@ function prepareDataMessages(data) {
 }
 
 Echo.channel('channel-chat')
-    .listen('.App\\Events\\ChatReceveid', (event) => {
+    .listen('.channel-chat', (event) => {
         prepareDataMessages([JSON.parse(event.message)])
     });

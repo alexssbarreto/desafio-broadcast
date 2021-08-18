@@ -14,7 +14,23 @@ class Messages extends Model
         'message',
     ];
 
-    protected $dispatchesEvents = [
-        'created' => ChatReceveid::class,
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'user_id',
+        'read_at'
     ];
+
+    protected $dispatchesEvents = [
+        'saved' => ChatReceveid::class,
+    ];
+
+    protected $with = [
+        'user'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

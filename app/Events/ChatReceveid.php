@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Messages;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -14,14 +15,14 @@ class ChatReceveid implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    private string $message;
+    private Messages $message;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(string $message)
+    public function __construct(Messages $message)
     {
         $this->message = $message;
     }
@@ -39,6 +40,11 @@ class ChatReceveid implements ShouldBroadcast
     public function message(): string
     {
         return $this->message;
+    }
+
+    public function broadcastAs()
+    {
+        return 'chat-receveid';
     }
 
     public function broadcastWith()

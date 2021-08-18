@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\ChatMessage;
 use App\Models\Messages;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ChatMessageController extends Controller
 {
-    public function index(Messages $message)
+    public function index()
     {
         return view('messages');
     }
 
-    public function list(Messages $message)
+    public function list()
     {
-        return $message->get();
+        return Messages::all();
     }
 
     public function register(Request $request)
@@ -24,7 +24,12 @@ class ChatMessageController extends Controller
             'message' => 'required|string'
         ]);
 
-        Messages::create($request->all());
+        $user = User::find($request->input('user_id'));
+
+        $message = new Messages($request->all());
+
+        $message->user()->associate($user);
+        $message->save();
 
         return response(null, 201);
     }
