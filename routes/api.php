@@ -22,8 +22,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('/users', function () {
-    return response(User::get(), 200);
+    return response(User::all(), 200);
 });
 
-Route::get('/messages', [ChatMessageController::class, 'list']);
+Route::get('/messages', [ChatMessageController::class, 'index']);
 Route::post('/messages', [ChatMessageController::class, 'register']);

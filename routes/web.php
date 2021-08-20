@@ -28,11 +28,11 @@ Route::get('/test/store', [TestController::class, 'store']);
 Route::get('/test/notification', [TestController::class, 'notification']);
 Route::get('/test/channel', [TestController::class, 'channel']);
 
-Route::get('/chat', [ChatMessageController::class, 'index']);
+Route::get('/chat', [ChatMessageController::class, 'show']);
 
 Route::get('/users', function () {
     return response(User::get(), 200);
 });
 
-Route::get('/messages', [ChatMessageController::class, 'list']);
+Route::get('/messages', [ChatMessageController::class, 'index']);
 Route::post('/messages', [ChatMessageController::class, 'register']);
